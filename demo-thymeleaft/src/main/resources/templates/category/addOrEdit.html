@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/categories/saveOrUpdate}"
+      method="post"
+        th:object="${category}">
+    Category id
+    <input type="hidden" th:field="*{isEdit}">
+    <input type="text" th:field="*{id}" readonly/>
+    <small th:if="${#fields.hasErrors('id')}"></small>
+
+    <br><br>
+    Categori name
+    <input type="text" th:field="*{name}" />
+    <small th:if="${#fields.hasErrors('name')}">Name is required or valid</small>
+
+    <button>
+        <span th:if="${category.isEdit}">Update</span>
+        <span th:unless="${category.isEdit}">Save</span>
+    </button>
+
+</form>
+
+</body>
+</html>
